@@ -1,0 +1,38 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+  <class name="familyalbum.model.Subject" table="subject">
+
+    <id name="subjectId" type="integer" unsaved-value="0" >
+      <column name="subjectId" sql-type="int" not-null="true"/>
+      <generator class="native"/>
+    </id>
+
+    <property name="name1" />
+    <property name="name2"/>
+    <property name="notes"/>
+    <property name="sex"/>
+    <property name="subjectTypeId"/>
+
+    <many-to-one name="family" column="familyId" not-null="true"/>
+
+    <set name="relationships" inverse="true" cascade="all">
+      <key column="fromSubjectId" not-null="true" />
+      <one-to-many class="familyalbum.model.Relationship"/>
+    </set>
+
+    <set name="subjectInPhotos" inverse="true" cascade="all" order-by="photoId asc">
+      <key column="subjectId" not-null="true"/>
+      <one-to-many class="familyalbum.model.SubjectInPhoto"/>
+    </set>
+
+    <!--<many-to-one name="defaultSubjectInPhoto" column="defaultSubjectInPhotoId" not-null="false"/>-->
+    <property name="defaultSubjectInPhotoId" not-null="false" />
+
+  </class>
+
+</hibernate-mapping>
+

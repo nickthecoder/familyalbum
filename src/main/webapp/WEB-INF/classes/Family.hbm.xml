@@ -1,0 +1,31 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+  <class name="familyalbum.model.Family" table="family">
+
+    <id name="familyId" type="integer" >
+      <column name="familyId" sql-type="int" not-null="true"/>
+      <generator class="native"/>
+    </id>
+
+    <property name="label"/>
+    <property name="subLabel"/>
+    <property name="notes"/>
+
+    <set name="subjects" inverse="true" cascade="all">
+      <key column="familyId" not-null="true" />
+      <one-to-many class="familyalbum.model.Subject"/>
+    </set>
+
+    <set name="albums" inverse="true" cascade="all">
+      <key column="familyId" not-null="true" />
+      <one-to-many class="familyalbum.model.Album"/>
+    </set>
+
+  </class>
+
+</hibernate-mapping>
+

@@ -1,0 +1,25 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+  <class name="familyalbum.model.SubjectInPhoto" table="subjectInPhoto">
+
+    <id name="subjectInPhotoId" type="integer">
+      <column name="subjectInPhotoId" sql-type="int" not-null="true"/>
+      <generator class="native"/>
+    </id>
+
+    <property name="x" />
+    <property name="y"/>
+    <property name="radius"/>
+    <property name="useHalo"/>
+
+    <many-to-one name="photo" column="photoId" not-null="true"/>
+    <many-to-one name="subject" column="subjectId" not-null="true"/>
+
+  </class>
+
+</hibernate-mapping>
+

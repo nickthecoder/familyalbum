@@ -1,0 +1,43 @@
+/*
+  This is a java bean shell script, which is used to initialise the wiki engine.
+*/
+import java.text.*;
+
+import pinkwino.*;
+import pinkwino.util.*;
+import pinkwino.storage.*;
+import pinkwino.security.*;
+import pinkwino.plugins.*;
+import pinkwino.plugins.*;
+import pinkwino.link.*;
+
+import pinkwino.optional.image.*;
+
+print( "familyalbum - pinkwino.bsh : begin" );
+
+contextPath = "/familyalbum";
+wikiEngine.setContextPath( contextPath );
+wikiEngine.setDefaultPageName( "home" );
+
+namespace = new Namespace( "default" );
+namespace.setStorage( new NullStorage() );
+wikiEngine.addNamespace( namespace );
+wikiEngine.setDefaultNamespace( namespace );
+
+wikiEngine.initialiseFromClasspath( "common_externalLinkManager.bsh" );
+wikiEngine.initialiseFromClasspath( "common_syntaxManager.bsh" );
+wikiEngine.initialiseFromClasspath( "common_pluginManager.bsh" );
+
+urlManager = new StandardUrlManager( contextPath + "/error.jsp" );
+urlManager.addUrl( UrlManager.URL_TYPE_VIEW, contextPath + "/view/%1" );
+urlManager.setTemplate( "/wiki/templates/default/template.jsp" );
+wikiEngine.setUrlManager( urlManager );
+
+StandardExternalLinkManager elm = wikiEngine.getExternalLinkManager();
+elm.add( new ExternalLinkType( "subject", contextPath + "/action/halo?subjectId=%1", true ) );
+elm.add( new ExternalLinkType( "photo", contextPath + "/action/photo?photoId=%1", true ) );
+elm.add( new ExternalLinkType( "family", contextPath + "/action/viewFamily?familyId=%1", true ) );
+elm.add( new ExternalLinkType( "album", contextPath + "/action/album?albumId=%1", true ) );
+
+print( "family album - pinkwino.bsh : end" );
+

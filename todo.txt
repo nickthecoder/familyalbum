@@ -1,0 +1,214 @@
+
+Check with IE
+
+Check the error page.
+
+Lay out the forms nicely (style sheet).
+
+photo nav doesnt look right
+
+Walkthrough
+-----------
+
+
+=== Misc ===
+
+
+=== Family ===
+
+- View Family
+
+- Edit Family
+
+=== Album ===
+
+- New album
+
+- List Albums
+
+- View Album
+
+=== Photo ===
+
+- Upload photo
+
+  should show the name of the images last updated.
+
+  should show the images updated today (need a date stamp on photo)
+
+  Include the original filename last part only?), so that even without the thumbnail,
+  it still means something.
+
+  Have a "Back to Photo Album" instead of cancel.
+
+  Include a date of photo (and accuracy), which persists across uploads
+
+  Get the date from the meta-data of the image
+
+  Allow upload of a zip of images.
+
+  Java applet to upload photos.
+
+- View Photo
+
+- Edit Subjects in photo
+
+
+=== Subject ===
+
+- Edit Subject
+
+  Ok should redirect to the list of *all* subjects ???
+  - Use multiple mappings to redirect to different pages? editSubjectFromList, editSubjectFromHalo
+
+- Edit Relationships
+
+- Edit Halos
+
+- Thumbnailer
+  Use JAI
+
+- Create a How To document
+
+
+
+Upgrade details
+---------------
+
+insert into relationshipType values ( 201, 'friend', null, 201, 201 );
+
+alter table subject add subjectTypeId int;
+update subject set subjectTypeId = 1;
+alter table subject alter subjectTypeId set default 1;
+
+alter table photo add label varchar(200);
+update photo set label=filename;
+
+create table subjectType (
+  subjectTypeId int not null auto_increment,
+  label varchar( 100 ),
+
+  primary key( subjectTypeId )
+);
+
+
+insert into subjectType values ( 1, 'person' );
+insert into subjectType values ( 2, 'animal' );
+Hmm, isn't there family, friends and pets???
+
+
+Change the subject type for the pets and friends
+
+
+# ---- family ----
+create table family (
+  familyId int not null auto_increment,
+  label varchar( 300 ) not null,
+  subLabel varchar( 300 ),
+  notes text,
+
+  primary key( familyId )
+);
+
+insert into family values ( 1, 'Robinson, Good, Fielke, Smith, Clap etc.', 'Maintained by Nick Robinson and John Fielke', null );
+
+alter table subject add familyId int;
+update subject set familyId = 1;
+
+
+alter table album add familyId int;
+update album set familyId = 1;
+
+
+
+# ---- notesRule ----
+create table notesRule (
+  notesRuleId int not null,
+  priority int not null,
+  label varchar( 30 ),
+  pattern varchar( 100 ),
+  replacement varchar( 100 ),
+
+  primary key ( notesRuleId )
+);
+
+insert into notesRule values ( 1, 53, 'Heading 1', '(?m)^!(.*)$', '<h1>$1</h1>' );
+insert into notesRule values ( 2, 52, 'Heading 2', '(?m)^!!(.*)$', '<h2>$1</h2>' );
+insert into notesRule values ( 3, 51, 'Heading 3', '(?m)^!!!(.*)$', '<h3>$1</h3>' );
+
+insert into notesRule values ( 4, 40, 'Bold', '__(.*)__', '<b>$1</b>' );
+insert into notesRule values ( 5, 40, 'Italics', "''(.*)''", '<i>$1</i>' );
+insert into notesRule values ( 6, 40, 'Horizontal Line', '^----$', '<hr/>' );
+insert into notesRule values ( 7, 10, 'Blank Line', '(?m)^$', '<br/>' );
+
+
+
+
+
+
+
+
+
+TO DO
+-----
+
+- highlight the current photo halo
+
+- Events
+
+- upload zip files of photos
+
+- upload multiple images at a time
+
+- Add icons to the "breadcrums", and add those to the index.jsp too.
+  change index.jsp to be more welcoming - and invite people to contribute.
+
+
+BUGS
+-----
+
+Ensure the correct family is got. If a photoId is passed, then work it out from that - not the session.
+
+When editing photos via a person, it is still doing next and prev for the album.
+(the other page isn't being used).
+
+MODEL
+-----
+
+Album
+ - albumPhotoId - delete it, or map it correctly.
+
+Subject
+ - Link to the default subjectInPhoto using hibernate.
+
+
+New Features
+------------
+
+- Have events, such as "boat party"
+  - New menu option from the Home page.
+  - Can also get there from a person's halo - it has a list of events that that person is associtated with.
+  - An album can be an event too (such as Algarve 2005)
+    - Actually, an album can be PART of an event (so mine, and steve's photos are seperate albums, but one event).
+  - Perhaps more generic. Allow arbitary "Labels" to be applied to any photo.
+
+  - Use sessions to build an event
+    - Start creating (or editing an event), then each picture has a "add to event" tag.
+
+  - Associating a SUBJECT with an EVENT is semi-automatic. The edit page can list all of the
+    people in the photos associated with the event. Next to each person, there is a check box
+    which decides if the person is associaed with the event.
+
+  - Each attendee can have a "main attendee" status, such as the bride and groom.
+  - These should be at the top, in bold.
+
+- Add wiki technology instead of plain text notes.
+
+- Relationships may not be reversable.
+  e.g. Bob may want Jane (his ex) on his page, but Jane does not want Bob on her page.
+
+- invite a relative/friend via e-mail to view or create a family tree.
+
+
+
+

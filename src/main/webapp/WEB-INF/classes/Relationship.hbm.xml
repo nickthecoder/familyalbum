@@ -1,0 +1,22 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+  <class name="familyalbum.model.Relationship" table="relationship">
+
+    <composite-id name="id">
+      <key-property name="fromSubjectId"/>
+      <key-property name="toSubjectId"/>
+    </composite-id>
+
+    <many-to-one name="relationshipType" class="familyalbum.model.RelationshipType" column="relationshipTypeId" not-null="true"/>
+
+    <many-to-one name="fromSubject" column="fromSubjectId" insert="false" update="false"/>
+    <many-to-one name="toSubject" column="toSubjectId" insert="false" update="false"/>
+
+  </class>
+
+</hibernate-mapping>
+

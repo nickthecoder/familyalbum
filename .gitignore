@@ -1,0 +1,12 @@
+*~
+*.class
+.gradle
+.project
+.classpath
+.settings
+build
+bin
+/images
+/sql
+/scripts
+

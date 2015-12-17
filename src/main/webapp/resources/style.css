@@ -1,0 +1,186 @@
+
+a.onButton {
+  color: white;
+}
+
+img.icon {
+  vertical-align: -20%;
+}
+
+.tips {
+  border: 2px dashed #161;
+  padding: 0px 8px 0px 8px;
+  margin-left: 10%;
+  margin-right: 10%;
+  color: #161;
+  background: #9c9;
+}
+
+.tips li {
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+}
+
+.narrow {
+  width: 400px;
+}
+
+.easyReading {
+  margin-left: 100px;
+  width: 400px;
+}
+
+#mainContainer {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.haloContainer {
+  position: relative;
+  margin: 60px auto;
+  width: 410px;
+}
+
+.halo {
+  position: absolute;
+  z-index: 400;
+  width: 80px;
+}
+
+.haloTable {
+  width: 950px;
+  border-spacing: 6px;
+}
+
+.haloTable tr td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.haloTable tr td.main {
+  vertical-align: top;
+}
+
+.haloTable tr td.center, .haloTable tr td.main {
+  width: 560px;
+}
+
+.haloTable tr td.edge {
+  width: 190px;
+}
+
+.haloTable tr td.parents,.haloTable tr td.partners,.haloTable tr td.children,
+.haloTable tr td.siblings,.haloTable tr td.other,.haloTable tr td.photo {
+  width: 200px;
+  height: 200px;
+  border: 2px solid #411;
+  padding-top: 32px;
+}
+.haloTable tr td.relatives {
+  background-color: #eec;
+  padding-top: 32px;
+}
+
+.haloTable tr td.photo {
+  height: 220px;
+}
+
+.haloTable tr td.parents {
+  background-image: url( parents.png);
+  background-repeat: no-repeat;
+}
+.haloTable tr td.partners {
+  background-image: url( partners.png);
+  background-repeat: no-repeat;
+}
+.haloTable tr td.children {
+  background-image: url( children.png);
+  background-repeat: no-repeat;
+}
+.haloTable tr td.siblings {
+  background-image: url( siblings.png);
+  background-repeat: no-repeat;
+}
+.haloTable tr td.other {
+  background-image: url( other.png);
+  background-repeat: no-repeat;
+}
+.haloTable tr td.relatives {
+  background-image: url( relatives.png);
+  background-repeat: no-repeat;
+}
+.haloTable tr td.photo {
+  background-image: url( photo.png );
+  background-repeat: no-repeat;
+}
+
+
+
+
+/* subjectInPhoto */
+
+
+#subjectsInPhotoContainer {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#subjectsInPhotoMouse {
+  position: absolute;
+}
+
+.subjectInPhotoContainer {
+  position: absolute;
+  visibility: hidden;
+}
+
+a.subjectInPhoto {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+table.edit {
+  border-spacing: 0px;
+
+}
+
+table.edit td {
+  vertical-align: top;
+  background: #eec;
+}
+
+table.edit th {
+  vertical-align: bottom;
+  background: #ff9;
+  font-size: 18pt;
+}
+
+table.edit th, table.edit td  {
+  padding: 8px;
+  border: 1px solid #888;
+}
+
+.boxContainer h2 {
+  margin-top: 0px;
+}
+
+.photoNavigation {
+  text-align: right;
+}
+
+.wiki_editSection {
+  display: none;
+}
+
+.wikiLinkHere {
+  margin-top: 1.5em;
+  text-align: right;
+  font-size: 70%;
+}
+
+.breadcrumbNavigation img {
+  vertical-align: middle;
+}
+

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib
+        PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+        "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+
+<taglib>
+  <tlibversion>1.0</tlibversion>
+  <jspversion>1.1</jspversion>
+  <shortname>familyalbum</shortname>
+
+
+  <!-- {{{ photoDate -->
+  <tag>
+    <name>photoDate</name>
+    <tagclass>familyalbum.tags.PhotoDateTag</tagclass>
+    <bodycontent>none</bodycontent>
+    <info>
+      Writes the date or date unknown for a familyalbum photo.
+    </info>
+
+    <attribute>
+      <name>photo</name>
+      <type>familyalbum.model.Photo</type>
+      <rtexprvalue>true</rtexprvalue>
+      <required>true</required>
+    </attribute>
+
+    <attribute>
+      <name>unknown</name>
+      <type>java.lang.String</type>
+      <rtexprvalue>true</rtexprvalue>
+      <required>false</required>
+    </attribute>
+
+  </tag>
+  <!-- end photoDate }}} -->
+
+  <!-- {{{ halo -->
+  <tag>
+    <name>halo</name>
+    <tagclass>familyalbum.tags.HaloTag</tagclass>
+    <bodycontent>none</bodycontent>
+    <info>
+      Create a halo image, and a link to a specified page.
+      You must specifiy either a subject or a subjectInPhoto or both.
+    </info>
+
+    <attribute>
+      <name>subject</name>
+      <type>familyalbum.model.Subject</type>
+      <rtexprvalue>true</rtexprvalue>
+      <required>false</required>
+    </attribute>
+
+    <attribute>
+      <name>subjectInPhoto</name>
+      <type>familyalbum.model.SubjectInPhoto</type>
+      <rtexprvalue>true</rtexprvalue>
+      <required>false</required>
+    </attribute>
+
+    <attribute>
+      <name>action</name>
+      <type>java.lang.String</type>
+      <rtexprvalue>true</rtexprvalue>
+      <required>false</required>
+    </attribute>
+
+    <attribute>
+      <name>label</name>
+      <type>boolean</type>
+      <rtexprvalue>true</rtexprvalue>
+      <required>false</required>
+    </attribute>
+
+    <attribute>
+      <name>title</name>
+      <type>java.lang.String</type>
+      <rtexprvalue>true</rtexprvalue>
+      <required>false</required>
+    </attribute>
+
+    <attribute>
+      <name>onclick</name>
+      <type>java.lang.String</type>
+      <rtexprvalue>true</rtexprvalue>
+      <required>false</required>
+    </attribute>
+
+    <attribute>
+      <name>id</name>
+      <type>java.lang.String</type>
+      <rtexprvalue>true</rtexprvalue>
+      <required>false</required>
+    </attribute>
+
+    <attribute>
+      <name>editable</name>
+      <type>boolean</type>
+      <rtexprvalue>true</rtexprvalue>
+      <required>false</required>
+    </attribute>
+
+  </tag>
+  <!-- end halo }}} -->
+
+  <!-- {{{ notes -->
+  <tag>
+    <name>notes</name>
+    <tagclass>familyalbum.tags.NotesTag</tagclass>
+    <info>
+      Renders the notes, can do simple formatting such as replacing
+      new lines with line breaks.
+    </info>
+
+    <attribute>
+      <name>escape</name>
+      <type>boolean</type>
+      <rtexprvalue>true</rtexprvalue>
+      <required>false</required>
+    </attribute>
+
+  </tag>
+  <!-- end notes }}} -->
+
+</taglib>
+
+

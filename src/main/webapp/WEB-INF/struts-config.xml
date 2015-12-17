@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+
+<struts-config>
+
+  <!-- {{{ ========== Form Bean Definitions =================================== -->
+
+  <form-beans>
+
+    <form-bean name="familyForm" type="familyalbum.form.FamilyForm">
+    </form-bean>
+
+    <form-bean name="albumForm" type="familyalbum.form.AlbumForm">
+    </form-bean>
+
+    <form-bean name="subjectForm" type="familyalbum.form.SubjectForm">
+    </form-bean>
+
+    <form-bean name="photoForm" type="familyalbum.form.PhotoForm">
+    </form-bean>
+
+  </form-beans>
+
+  <!-- }}} -->
+
+  <!-- {{{ ========== Global Forward Definitions ============================== -->
+
+  <global-forwards>
+    <forward name="error" path="/error.jsp"/>
+  </global-forwards>
+
+  <!-- }}} -->
+
+  <!-- {{{ ========== Action Mapping Definitions ============================== -->
+
+  <action-mappings>
+
+    <!-- {{{ misc -->
+
+    <!-- Edit -->
+    <action
+      path="/edit"
+      type="familyalbum.action.ShowAction" >
+
+      <forward name="show" path="/edit.jsp" />
+    </action>
+
+    <!-- }}} -->
+
+    <!-- {{{ Album -->
+
+    <!-- ListAlbum -->
+    <action
+      path="/viewAlbums"
+      type="familyalbum.action.ShowAction" >
+
+      <forward name="show" path="/album/list.jsp"/>
+    </action>
+
+    <!-- Album -->
+    <action
+      path="/album"
+      type="familyalbum.action.ShowAction" >
+
+      <forward name="show" path="/album/view.jsp"/>
+    </action>
+
+    <action
+      path="/editAlbum"
+      name="albumForm"
+      scope="request"
+      type="familyalbum.action.AlbumEditAction" >
+
+      <forward name="show" path="/album/edit.jsp"/>
+      <forward name="saved" path="/action/album" redirect="true"/>
+      <forward name="cancelled" path="/action/album" redirect="true" />
+    </action>
+
+    <action
+      path="/newAlbum"
+      name="albumForm"
+      scope="request"
+      type="familyalbum.action.AlbumEditAction" >
+
+      <forward name="show" path="/album/new.jsp"/>
+      <forward name="saved" path="/action/album" redirect="true"/>
+      <forward name="cancelled" path="/action/edit" redirect="true" />
+    </action>
+
+    <action
+      path="/scanAlbum"
+      name="albumForm"
+      scope="request"
+      type="familyalbum.action.AlbumScanAction" >
+
+      <forward name="show" path="/album/scan.jsp"/>
+    </action>
+
+
+    <action
+      path="/deleteAlbum"
+      name="albumForm"
+      scope="request"
+      type="familyalbum.action.AlbumDeleteAction" >
+
+      <forward name="show" path="/album/delete.jsp"/>
+      <forward name="deleted" path="/action/viewAlbums" redirect="true"/>
+      <forward name="cancelled" path="/action/edit" redirect="true" />
+    </action>
+
+    <!-- end Album }}} -->
+
+    <!-- {{{ Photo -->
+
+    <!-- view photo -->
+    <action
+      path="/photo"
+      type="familyalbum.action.PhotoAction" >
+
+      <forward name="show" path="/photo/view.jsp"/>
+      <forward name="jump" path="/action/photo" redirect="true"/>
+    </action>
+
+    <!-- edit photo -->
+    <action
+      path="/editPhoto"
+      type="familyalbum.action.PhotoEditAction"
+      name="photoForm"
+      scope="request" >
+
+      <forward name="show" path="/photo/edit.jsp"/>
+      <forward name="jump" path="/action/editPhoto" redirect="true"/>
+      <forward name="saved" path="/action/photo" redirect="true"/>
+      <forward name="cancelled" path="/action/photo" redirect="true"/>
+    </action>
+
+    <!-- edit subjects in photo -->
+    <action
+      path="/editSubjectsInPhoto"
+      type="familyalbum.action.SubjectInPhotoEditAction"
+      name="photoForm"
+      scope="request" >
+
+      <forward name="show" path="/photo/editSubjects.jsp"/>
+      <forward name="jump" path="/action/editSubjectsInPhoto" redirect="true"/>
+      <forward name="savedSubject" path="/action/editSubjectsInPhoto" redirect="true"/>
+      <forward name="deletedSubject" path="/action/editSubjectsInPhoto" redirect="true"/>
+      <forward name="cancelled" path="/action/photo" redirect="true"/>
+    </action>
+
+    <!-- upload photo -->
+    <action
+      path="/uploadPhoto"
+      scope="request"
+      type="familyalbum.action.PhotoUploadAction" >
+
+      <forward name="show" path="/photo/upload.jsp"/>
+      <forward name="saved" path="/action/uploadPhoto" redirect="true"/>
+      <forward name="newCancelled" path="/action/album" redirect="true" />
+    </action>
+
+    <!-- delete photo -->
+    <action
+      path="/deletePhoto"
+      type="familyalbum.action.PhotoDeleteAction"
+      name="photoForm"
+      scope="request" >
+
+      <forward name="show" path="/photo/delete.jsp"/>
+      <forward name="deleted" path="/action/album" redirect="true"/>
+      <forward name="cancelled" path="/action/photo" redirect="true"/>
+    </action>
+
+    <!-- Photo By Subject -->
+    <action
+      path="/photoBySubject"
+      type="familyalbum.action.PhotoBySubjectAction" >
+
+      <forward name="show" path="/photo/viewBySubject.jsp"/>
+      <forward name="jump" path="/action/photoBySubject" redirect="true"/>
+
+    </action>
+
+    <!-- end Photo }}} -->
+
+    <!-- {{{ Subject -->
+
+    <!-- List Subjects -->
+    <action
+      path="/viewSubjects"
+      type="familyalbum.action.ShowAction" >
+
+      <forward name="show" path="/subject/list.jsp"/>
+    </action>
+
+    <!-- Subject -->
+    <action
+      path="/subject"
+      type="familyalbum.action.ShowAction" >
+
+      <forward name="show" path="/subject/view.jsp" />
+    </action>
+
+    <action
+      path="/halo"
+      type="familyalbum.action.ShowAction" >
+
+      <forward name="show" path="/subject/halo.jsp" />
+    </action>
+    <action
+      path="/haloNarrow"
+      type="familyalbum.action.ShowAction" >
+
+      <forward name="show" path="/subject/haloNarrow.jsp" />
+    </action>
+
+    <action
+      path="/editSubject"
+      name="subjectForm"
+      scope="request"
+      type="familyalbum.action.SubjectEditAction" >
+
+      <forward name="show" path="/subject/edit.jsp" />
+      <forward name="saved" path="/action/editRelationships" redirect="true" />
+      <forward name="cancelled" path="/action/halo" redirect="true" />
+    </action>
+
+    <action
+      path="/editRelationships"
+      name="subjectForm"
+      scope="request"
+      type="familyalbum.action.SubjectEditAction" >
+
+      <forward name="show" path="/subject/relationships.jsp" />
+      <forward name="saved" path="/action/halo" redirect="true" />
+      <forward name="cancelled" path="/action/halo" redirect="true" />
+    </action>
+
+    <action
+      path="/editHalos"
+      name="subjectForm"
+      scope="request"
+      type="familyalbum.action.SubjectEditAction" >
+
+      <forward name="show" path="/subject/halos.jsp" />
+      <forward name="saved" path="/action/editHalos" redirect="true" />
+      <forward name="cancelled" path="/action/halo" redirect="true" />
+    </action>
+
+    <action
+      path="/newSubject"
+      name="subjectForm"
+      scope="request"
+      type="familyalbum.action.SubjectEditAction" >
+
+      <forward name="show" path="/subject/new.jsp" />
+      <forward name="saved" path="/action/editRelationships" redirect="true" />
+      <forward name="cancelled" path="/action/edit" redirect="true" />
+    </action>
+
+    <action
+      path="/deleteSubject"
+      name="subjectForm"
+      scope="request"
+      type="familyalbum.action.SubjectDeleteAction" >
+
+      <forward name="show" path="/subject/delete.jsp" />
+      <forward name="deleted" path="/action/viewSubjects" redirect="true" />
+      <forward name="cancelled" path="/action/halo" redirect="true" />
+    </action>
+
+    <action
+      path="/subjectThumbnails"
+      type="familyalbum.action.ShowAction" >
+
+      <forward name="show" path="/subject/thumbnails.jsp" />
+    </action>
+
+    <!-- end subject }}} -->
+
+    <!-- {{{ family -->
+
+    <!-- list families -->
+    <action
+      path="/families"
+      type="familyalbum.action.ShowAction" >
+
+      <forward name="show" path="/family/list.jsp"/>
+    </action>
+
+    <!-- view family -->
+    <action
+      path="/viewFamily"
+      type="familyalbum.action.ShowAction" >
+
+      <forward name="show" path="/family/view.jsp"/>
+    </action>
+
+    <!-- edit family -->
+    <action
+      path="/editFamily"
+      name="familyForm"
+      scope="request"
+      type="familyalbum.action.FamilyEditAction" >
+
+      <forward name="show" path="/family/edit.jsp" />
+      <forward name="saved" path="/action/viewFamily" redirect="true" />
+      <forward name="cancelled" path="/action/viewFamily" redirect="true" />
+    </action>
+
+    <!-- new family -->
+    <action
+      path="/newFamily"
+      name="familyForm"
+      scope="request"
+      type="familyalbum.action.FamilyEditAction" >
+
+      <forward name="show" path="/family/new.jsp" />
+      <forward name="saved" path="/action/viewFamily" redirect="true" />
+      <forward name="cancelled" path="/action/families" redirect="true" />
+    </action>
+
+    <!-- delete family -->
+    <action
+      path="/deleteFamily"
+      name="familyForm"
+      scope="request"
+      type="familyalbum.action.FamilyDeleteAction" >
+
+      <forward name="show" path="/family/delete.jsp" />
+      <forward name="deleted" path="/action/families" redirect="true" />
+      <forward name="cancelled" path="/action/viewFamily" redirect="true" />
+    </action>
+
+    <!-- end Family }}} -->
+
+  </action-mappings>
+
+  <!-- }}} -->
+
+  <!-- {{{ ========== Controller Configuration ================================ -->
+
+  <controller>
+    <!-- The "input" parameter on "action" elements is the name of a
+         local or global "forward" rather than a module-relative path -->
+    <set-property property="inputForward" value="true"/>
+  </controller>
+
+  <!-- }}} -->
+
+  <!-- {{{ ========== Message Resources Definitions =========================== -->
+
+  <message-resources
+    parameter="familyalbum.ApplicationResources"/>
+
+  <!-- }}} -->
+
+  <!-- {{{ ========== Plug Ins Configuration ================================== -->
+  <!-- }}} -->
+
+</struts-config>
+
+
+

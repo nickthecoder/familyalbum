@@ -1,0 +1,21 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+  <class name="familyalbum.model.NotesRule" table="notesRule">
+
+    <id name="notesRuleId" type="integer" unsaved-value="0" >
+      <column name="notesRuleId" sql-type="int" not-null="true"/>
+      <generator class="native"/>
+    </id>
+
+    <property name="priority"/>
+    <property name="pattern" />
+    <property name="replacement" />
+
+  </class>
+
+</hibernate-mapping>
+

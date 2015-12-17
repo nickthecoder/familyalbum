@@ -1,0 +1,23 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+  <class name="familyalbum.model.RelationshipType" table="relationshipType">
+
+    <id name="relationshipTypeId" type="integer" unsaved-value="0" >
+      <column name="relationshipTypeId" sql-type="int" not-null="true"/>
+      <generator class="native"/>
+    </id>
+
+    <property name="label" />
+    <property name="sex"/>
+
+    <many-to-one name="reverseMale" column="reverseMale" insert="false" update="false"/>
+    <many-to-one name="reverseFemale" column="reverseFemale" insert="false" update="false"/>
+
+  </class>
+
+</hibernate-mapping>
+
