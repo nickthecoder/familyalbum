@@ -12,7 +12,7 @@
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-*/
+ */
 
 package uk.co.nickthecoder.familyalbum.model;
 
@@ -23,91 +23,86 @@ import java.util.TreeMap;
 public class FamilyAlbum
 {
 
-  /**
-    Singleton design pattern.
-    <br><br>
-    See Gamma, Helm, Johnson, Vlissides. Design Patterns,
-    pages 127-134. Addison-Wesley
-  */
-  private static FamilyAlbum _instance;
+    /**
+     * Singleton design pattern. <br>
+     * <br>
+     * See Gamma, Helm, Johnson, Vlissides. Design Patterns, pages 127-134.
+     * Addison-Wesley
+     */
+    private static FamilyAlbum _instance;
 
-  public static Map _yearAccuracyLabels;
+    public static Map<Integer, String> _yearAccuracyLabels;
 
+    static {
+        _yearAccuracyLabels = new TreeMap<Integer, String>();
 
-  static {
-    _yearAccuracyLabels = new TreeMap();
+        _yearAccuracyLabels.put(new Integer(0), "Exact");
+        _yearAccuracyLabels.put(new Integer(1), "Within a year or two");
+        _yearAccuracyLabels.put(new Integer(10), "Within 10 Years");
+        _yearAccuracyLabels.put(new Integer(100), "Complete Guess");
 
-    _yearAccuracyLabels.put( new Integer( 0 ), "Exact" );
-    _yearAccuracyLabels.put( new Integer( 1 ), "Within a year or two" );
-    _yearAccuracyLabels.put( new Integer( 10 ), "Within 10 Years" );
-    _yearAccuracyLabels.put( new Integer( 100 ), "Complete Guess" );
-
-  }
-
-  private File _baseDirectory;
-
-  private String _baseUrl;
-
-
-  /**
-    Singleton design pattern.
-    <br><br>
-    See Gamma, Helm, Johnson, Vlissides. Design Patterns,
-    pages 127-134. Addison-Wesley
-  */
-  public static FamilyAlbum instance()
-  {
-    if ( _instance == null ) {
-      _instance = new FamilyAlbum();
     }
 
-    return _instance;
-  }
+    private File _baseDirectory;
 
+    private String _baseUrl;
 
-  public Map getYearAccuracyLabels()
-  {
-    return _yearAccuracyLabels;
-  }
+    /**
+     * Singleton design pattern. <br>
+     * <br>
+     * See Gamma, Helm, Johnson, Vlissides. Design Patterns, pages 127-134.
+     * Addison-Wesley
+     */
+    public static FamilyAlbum instance()
+    {
+        if (_instance == null) {
+            _instance = new FamilyAlbum();
+        }
 
-  /**
-    Constructor must be protected to ensure that the singleton pattern
-    is not broken.
-  */
-  protected FamilyAlbum()
-  {
-  }
+        return _instance;
+    }
 
-  public File getBaseDirectory()
-  {
-    return _baseDirectory;
-  }
+    public Map<Integer, String> getYearAccuracyLabels()
+    {
+        return _yearAccuracyLabels;
+    }
 
-  public void setBaseDirectory( File value )
-  {
-    _baseDirectory = value;
-  }
+    /**
+     * Constructor must be protected to ensure that the singleton pattern is not
+     * broken.
+     */
+    protected FamilyAlbum()
+    {
+    }
 
+    public File getBaseDirectory()
+    {
+        return _baseDirectory;
+    }
 
-  public String getBaseUrl()
-  {
-    return _baseUrl;
-  }
+    public void setBaseDirectory(File value)
+    {
+        _baseDirectory = value;
+    }
 
-  public void setBaseUrl( String value )
-  {
-    _baseUrl = value;
-  }
+    public String getBaseUrl()
+    {
+        return _baseUrl;
+    }
 
+    public void setBaseUrl(String value)
+    {
+        _baseUrl = value;
+    }
 
-  public File getFile( String modelsPath )
-  {
-    return new File( _baseDirectory, modelsPath );
-  }
+    public File getFile(String modelsPath)
+    {
+        return new File(_baseDirectory, modelsPath);
+    }
 
-  public String getURL( String modelsPath )
-  {
-    throw new RuntimeException( "Not coded yet" );
-  }
+    public String getURL(String modelsPath)
+    {
+        throw new RuntimeException("Not coded yet");
+    }
 
 }

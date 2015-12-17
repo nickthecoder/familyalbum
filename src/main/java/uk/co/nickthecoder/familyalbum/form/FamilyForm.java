@@ -1,16 +1,4 @@
 /*
-----------------------------------------------------------------------
-
- Author        :  (nick)
- Creation Date : 2004-03-23
-
-----------------------------------------------------------------------
-
- History
- 2004-03-23 : nick : Initial Development
-
-----------------------------------------------------------------------
-
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
@@ -24,89 +12,71 @@
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-
-----------------------------------------------------------------------
-*/
+ */
 
 package uk.co.nickthecoder.familyalbum.form;
 
 import org.apache.struts.action.ActionForm;
 
-/**
-*/
-
-public class FamilyForm
-  extends ActionForm
+public class FamilyForm extends ActionForm
 {
 
-  // -------------------- [[Static Attributes]] --------------------
+    private static final long serialVersionUID = 1L;
 
-  // -------------------- [[Attributes]] --------------------
+    private Integer _familyId;
 
-  private Integer _familyId;
+    private String _label;
 
-  private String _label;
+    private String _subLabel;
 
-  private String _subLabel;
+    private String _notes;
 
-  private String _notes;
+    public FamilyForm()
+    {
+        super();
+    }
 
-  // -------------------- [[Static Methods]] --------------------
+    public Integer getFamilyId()
+    {
+        return _familyId;
+    }
 
-  // -------------------- [[Constructors]] --------------------
+    public void setFamilyId(Integer value)
+    {
+        _familyId = value;
+    }
 
-  /**
-  */
-  public FamilyForm()
-  {
-    super();
-  }
+    public String getLabel()
+    {
+        return _label;
+    }
 
-  // -------------------- [[Methods]] --------------------
+    public void setLabel(String value)
+    {
+        _label = value;
+    }
 
-  public Integer getFamilyId()
-  {
-    return _familyId;
-  }
+    public String getSubLabel()
+    {
+        return _subLabel;
+    }
 
-  public void setFamilyId( Integer value )
-  {
-    _familyId = value;
-  }
+    public void setSubLabel(String value)
+    {
+        _subLabel = value;
+    }
 
-  public String getLabel()
-  {
-    return _label;
-  }
+    public String getNotes()
+    {
+        return _notes;
+    }
 
-  public void setLabel( String value )
-  {
-    _label = value;
-  }
+    public void setNotes(String value)
+    {
+        _notes = value;
+    }
 
-  public String getSubLabel()
-  {
-    return _subLabel;
-  }
-
-  public void setSubLabel( String value )
-  {
-    _subLabel = value;
-  }
-
-  public String getNotes()
-  {
-    return _notes;
-  }
-
-  public void setNotes( String value )
-  {
-    _notes = value;
-  }
-
-
-  // -------------------- [[Test / Debug]] --------------------
-
+    // -------------------- [[Test / Debug]] --------------------
 
 }
 

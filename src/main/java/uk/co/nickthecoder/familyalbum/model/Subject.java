@@ -43,9 +43,9 @@ public class Subject
 
     private String _sex;
 
-    private Set _subjectInPhotos = new HashSet();
+    private Set<SubjectInPhoto> _subjectInPhotos = new HashSet<SubjectInPhoto>();
 
-    private Set _relationships = new HashSet();
+    private Set<Relationship> _relationships = new HashSet<Relationship>();
 
     private Integer _subjectTypeId;
 
@@ -185,31 +185,31 @@ public class Subject
         _notes = value;
     }
 
-    public Set getSubjectInPhotos()
+    public Set<SubjectInPhoto> getSubjectInPhotos()
     {
         return _subjectInPhotos;
     }
 
-    public void setSubjectInPhotos(Set value)
+    public void setSubjectInPhotos(Set<SubjectInPhoto> value)
     {
         _subjectInPhotos = value;
     }
 
-    public Set getRelationships()
+    public Set<Relationship> getRelationships()
     {
         return _relationships;
     }
 
-    public void setRelationships(Set value)
+    public void setRelationships(Set<Relationship> value)
     {
         _relationships = value;
     }
 
-    public Set getRelationships(Set relationshipTypesIds)
+    public Set<Relationship> getRelationships(Set<Integer> relationshipTypesIds)
     {
-        Set result = new HashSet();
-        for (Iterator i = getRelationships().iterator(); i.hasNext();) {
-            Relationship relationship = (Relationship) i.next();
+        Set<Relationship> result = new HashSet<Relationship>();
+        for (Iterator<Relationship> i = getRelationships().iterator(); i.hasNext();) {
+            Relationship relationship = i.next();
 
             if (relationshipTypesIds.contains(relationship.getRelationshipType().getRelationshipTypeId())) {
                 result.add(relationship);
@@ -219,27 +219,27 @@ public class Subject
         return result;
     }
 
-    public Set getParents()
+    public Set<Relationship> getParents()
     {
         return getRelationships(RelationshipType.PARENTS_SET);
     }
 
-    public Set getSiblings()
+    public Set<Relationship> getSiblings()
     {
         return getRelationships(RelationshipType.SIBLINGS_SET);
     }
 
-    public Set getChildren()
+    public Set<Relationship> getChildren()
     {
         return getRelationships(RelationshipType.CHILDREN_SET);
     }
 
-    public Set getPartners()
+    public Set<Relationship> getPartners()
     {
         return getRelationships(RelationshipType.PARTNERS_SET);
     }
 
-    public Set getOtherRelationships()
+    public Set<Relationship> getOtherRelationships()
     {
         return getRelationships(RelationshipType.OTHERS_SET);
     }

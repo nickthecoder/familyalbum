@@ -19,7 +19,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Get file format, image resolution, number of bits per pixel and optionally
@@ -244,19 +245,17 @@ public class ImageInfo {
 	private InputStream in;
 	private DataInput din;
 	private boolean collectComments = true;
-	private Vector comments;
+	private List<String> comments;
 	private boolean determineNumberOfImages;
 	private int numberOfImages;
 	private int physicalHeightDpi;
 	private int physicalWidthDpi;
-	private int bitBuf;
-	private int bitPos;
 
 	private void addComment(String s) {
 		if (comments == null) {
-			comments = new Vector();
+			comments = new ArrayList<String>();
 		}
-		comments.addElement(s);
+		comments.add(s);
 	}
 
 	/**
@@ -786,7 +785,7 @@ public class ImageInfo {
 		if (comments == null || index < 0 || index >= comments.size()) {
 			throw new IllegalArgumentException("Not a valid comment index: " + index);
 		}
-		return (String)comments.elementAt(index);
+		return (String)comments.get(index);
 	}
 
 	/**

@@ -27,21 +27,14 @@ import uk.co.nickthecoder.familyalbum.util.ImageInfo;
 import uk.co.nickthecoder.familyalbum.util.JobQueue;
 import uk.co.nickthecoder.familyalbum.util.ThumbnailMaker;
 
-/**
-*/
-
 public class Photo
 {
-
-    // -------------------- [[Static Attributes]] --------------------
 
     public static final int QUICK_WIDTH = 640;
 
     public static final int QUICK_HEIGHT = 480;
 
     public static JobQueue _imageJobQueue = new JobQueue();
-
-    // -------------------- [[Attributes]] --------------------
 
     private Integer _photoId;
 
@@ -59,13 +52,11 @@ public class Photo
 
     private Album _album;
 
-    private Set _subjectsInPhoto = new HashSet();
+    private Set<SubjectInPhoto> _subjectsInPhoto = new HashSet<SubjectInPhoto>();
 
     private int _width;
 
     private int _height;
-
-    // -------------------- [[Static Methods]] --------------------
 
     public static JobQueue getImageJobQueue()
     {
@@ -77,10 +68,6 @@ public class Photo
         return FamilyAlbum.instance().getBaseUrl() + "/" + filename.replaceAll(" ", "%20");
     }
 
-    // -------------------- [[Constructors]] --------------------
-
-    /**
-  */
     public Photo()
     {
         super();
@@ -101,11 +88,6 @@ public class Photo
     public Integer getPhotoId()
     {
         return _photoId;
-    }
-
-    private void setPhotoId(Integer value)
-    {
-        _photoId = value;
     }
 
     public String getFilename()
@@ -263,20 +245,20 @@ public class Photo
             result = false;
         }
 
-        for (Iterator i = getSubjectsInPhoto().iterator(); i.hasNext();) {
-            SubjectInPhoto sip = (SubjectInPhoto) i.next();
+        for (Iterator<SubjectInPhoto> i = getSubjectsInPhoto().iterator(); i.hasNext();) {
+            SubjectInPhoto sip = i.next();
             result = result && sip.getImagesUpToDate();
         }
 
         return result;
     }
 
-    public Set getSubjectsInPhoto()
+    public Set<SubjectInPhoto> getSubjectsInPhoto()
     {
         return _subjectsInPhoto;
     }
 
-    public void setSubjectsInPhoto(Set value)
+    public void setSubjectsInPhoto(Set<SubjectInPhoto> value)
     {
         _subjectsInPhoto = value;
     }
@@ -288,10 +270,10 @@ public class Photo
 
     public Photo getNextPhotoInAlbum()
     {
-        Set photos = getAlbum().getPhotos();
+        Set<Photo> photos = getAlbum().getPhotos();
 
-        for (Iterator i = photos.iterator(); i.hasNext();) {
-            Photo photoInList = (Photo) i.next();
+        for (Iterator<Photo> i = photos.iterator(); i.hasNext();) {
+            Photo photoInList = i.next();
             if (photoInList.getPhotoId() == this.getPhotoId()) {
                 if (i.hasNext()) {
                     return (Photo) i.next();
@@ -305,10 +287,10 @@ public class Photo
 
     public Photo getPreviousPhotoInAlbum()
     {
-        Set photos = getAlbum().getPhotos();
+        Set<Photo> photos = getAlbum().getPhotos();
         Photo prevPhoto = null;
 
-        for (Iterator i = photos.iterator(); i.hasNext();) {
+        for (Iterator<Photo> i = photos.iterator(); i.hasNext();) {
             Photo photoInList = (Photo) i.next();
             if (photoInList.getPhotoId() == this.getPhotoId()) {
                 if (prevPhoto != null) {

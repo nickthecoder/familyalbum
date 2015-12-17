@@ -253,10 +253,10 @@ public class SubjectInPhoto
 
     public SubjectInPhoto getNextPhotoBySubject()
     {
-        Set subjectInPhotos = getSubject().getSubjectInPhotos();
+        Set<SubjectInPhoto> subjectInPhotos = getSubject().getSubjectInPhotos();
 
-        for (Iterator i = subjectInPhotos.iterator(); i.hasNext();) {
-            SubjectInPhoto subjectInPhoto = (SubjectInPhoto) i.next();
+        for (Iterator<SubjectInPhoto> i = subjectInPhotos.iterator(); i.hasNext();) {
+            SubjectInPhoto subjectInPhoto = i.next();
             // System.out.println( "Comparing : " +
             // subjectInPhoto.getSubjectInPhotoId() + " vs " +
             // getSubjectInPhotoId() );
@@ -274,11 +274,11 @@ public class SubjectInPhoto
 
     public SubjectInPhoto getPreviousPhotoBySubject()
     {
-        Set subjectInPhotos = getSubject().getSubjectInPhotos();
+        Set<SubjectInPhoto> subjectInPhotos = getSubject().getSubjectInPhotos();
         SubjectInPhoto prevSubjectInPhoto = null;
 
-        for (Iterator i = subjectInPhotos.iterator(); i.hasNext();) {
-            SubjectInPhoto subjectInPhoto = (SubjectInPhoto) i.next();
+        for (Iterator<SubjectInPhoto> i = subjectInPhotos.iterator(); i.hasNext();) {
+            SubjectInPhoto subjectInPhoto = i.next();
             // System.out.println( "Comparing : " +
             // subjectInPhoto.getSubjectInPhotoId() + " vs " +
             // getSubjectInPhotoId() );

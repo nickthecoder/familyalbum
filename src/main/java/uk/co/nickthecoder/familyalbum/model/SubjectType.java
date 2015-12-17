@@ -31,7 +31,7 @@ public class SubjectType
 
     public static final SubjectType FRIEND = new SubjectType(3, "Friend", "Friends");
 
-    private static HashMap _subjectTypes;
+    private static HashMap<Integer, SubjectType> _subjectTypes;
 
     private Integer _subjectTypeId;
 
@@ -39,12 +39,10 @@ public class SubjectType
 
     private String _categoryLabel;
 
-    // -------------------- [[Static Methods]] --------------------
-
     public static SubjectType get(Integer subjectTypeId)
     {
         if (_subjectTypes == null) {
-            _subjectTypes = new HashMap();
+            _subjectTypes = new HashMap<Integer, SubjectType>();
             addSubjectType(FAMILY_MEMBER);
             addSubjectType(PET);
             addSubjectType(FRIEND);

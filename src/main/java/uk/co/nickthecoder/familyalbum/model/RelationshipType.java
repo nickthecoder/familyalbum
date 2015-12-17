@@ -22,15 +22,15 @@ import java.util.Set;
 public class RelationshipType
 {
 
-    public static final Set PARENTS_SET = createSet(new int[] { 1, 2 });
+    public static final Set<Integer> PARENTS_SET = createSet(new int[] { 1, 2 });
 
-    public static final Set SIBLINGS_SET = createSet(new int[] { 5, 6 });
+    public static final Set<Integer> SIBLINGS_SET = createSet(new int[] { 5, 6 });
 
-    public static final Set CHILDREN_SET = createSet(new int[] { 3, 4 });
+    public static final Set<Integer> CHILDREN_SET = createSet(new int[] { 3, 4 });
 
-    public static final Set PARTNERS_SET = createSet(new int[] { 20, 21, 22, 23 });
+    public static final Set<Integer> PARTNERS_SET = createSet(new int[] { 20, 21, 22, 23 });
 
-    public static final Set OTHERS_SET = createSet(new int[] { 101, 102, 201 });
+    public static final Set<Integer> OTHERS_SET = createSet(new int[] { 101, 102, 201 });
 
     private Integer _relationshipTypeId;
 
@@ -42,9 +42,9 @@ public class RelationshipType
 
     private RelationshipType _reverseFemale;
 
-    private static Set createSet(int[] values)
+    private static Set<Integer> createSet(int[] values)
     {
-        Set result = new HashSet();
+        Set<Integer> result = new HashSet<Integer>();
         for (int i = 0; i < values.length; i++) {
             Integer key = new Integer(values[i]);
             result.add(key);

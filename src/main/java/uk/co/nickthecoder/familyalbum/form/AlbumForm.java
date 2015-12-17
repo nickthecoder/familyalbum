@@ -1,16 +1,4 @@
 /*
-----------------------------------------------------------------------
-
- Author        :  (nick)
- Creation Date : 2004-03-23
-
-----------------------------------------------------------------------
-
- History
- 2004-03-23 : nick : Initial Development
-
-----------------------------------------------------------------------
-
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
@@ -26,77 +14,56 @@
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 ----------------------------------------------------------------------
-*/
+ */
 
 package uk.co.nickthecoder.familyalbum.form;
 
 import org.apache.struts.action.ActionForm;
 
-/**
-*/
-
-public class AlbumForm
-  extends ActionForm
+public class AlbumForm extends ActionForm
 {
 
-  // -------------------- [[Static Attributes]] --------------------
+    private static final long serialVersionUID = 1L;
 
-  // -------------------- [[Attributes]] --------------------
+    private Integer _albumId;
 
-  private Integer _albumId;
+    private String _label;
 
-  private String _label;
+    private String _notes;
 
-  private String _notes;
+    public AlbumForm()
+    {
+        super();
+    }
 
-  // -------------------- [[Static Methods]] --------------------
+    public Integer getAlbumId()
+    {
+        return _albumId;
+    }
 
-  // -------------------- [[Constructors]] --------------------
+    public void setAlbumId(Integer value)
+    {
+        _albumId = value;
+    }
 
-  /**
-  */
-  public AlbumForm()
-  {
-    super();
-  }
+    public String getLabel()
+    {
+        return _label;
+    }
 
-  // -------------------- [[Methods]] --------------------
+    public void setLabel(String value)
+    {
+        _label = value;
+    }
 
-  public Integer getAlbumId()
-  {
-    return _albumId;
-  }
+    public String getNotes()
+    {
+        return _notes;
+    }
 
-  public void setAlbumId( Integer value )
-  {
-    _albumId = value;
-  }
-
-  public String getLabel()
-  {
-    return _label;
-  }
-
-  public void setLabel( String value )
-  {
-    _label = value;
-  }
-
-  public String getNotes()
-  {
-    return _notes;
-  }
-
-  public void setNotes( String value )
-  {
-    _notes = value;
-  }
-
-
-  // -------------------- [[Test / Debug]] --------------------
-
+    public void setNotes(String value)
+    {
+        _notes = value;
+    }
 
 }
-
-// ---------- End Of Class AlbumForm ----------
-

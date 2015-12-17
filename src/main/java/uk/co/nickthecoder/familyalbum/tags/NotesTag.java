@@ -12,7 +12,7 @@
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-*/
+ */
 
 package uk.co.nickthecoder.familyalbum.tags;
 
@@ -29,118 +29,94 @@ import uk.co.nickthecoder.familyalbum.util.HibernateUtil;
 import uk.co.nickthecoder.webwidgets.util.TagUtil;
 
 /**
-  Redirects to a page, usually used after a POST.
-*/
+ * Redirects to a page, usually used after a POST.
+ */
 
-public class NotesTag
-  extends BodyTagSupport
+public class NotesTag extends BodyTagSupport
 {
 
-  // -------------------- [[Static Attributes]] --------------------
+    private static final long serialVersionUID = 1L;
 
-  private static List _rules;
+    private static List<NotesRule>_rules;
 
-  // -------------------- [[Attributes]] --------------------
+    private boolean _escape;
 
-  private boolean _escape;
+    @SuppressWarnings("unchecked")
+    protected synchronized List<NotesRule> getRules()
+    {
+        if (_rules == null) {
 
-  // -------------------- [[Static Methods]] --------------------
+            _rules = HibernateUtil.currentSession().createQuery("from NotesRule order by priority").list();
+        }
 
-  protected synchronized List getRules()
-  {
-    if ( _rules == null ) {
-
-      _rules = HibernateUtil.currentSession()
-        .createQuery( "from NotesRule order by priority" )
-        .list();
+        return _rules;
     }
 
-    return _rules;
-  }
-
-
-  // -------------------- [[Constructors]] --------------------
-
-  /**
-  */
-  public NotesTag()
-  {
-    super();
-    initialise();
-  }
-
-
-  private void initialise()
-  {
-    _escape = true;
-  }
-
-  public void release()
-  {
-    super.release();
-    initialise();
-  }
-
-  // -------------------- [[Methods]] --------------------
-
-
-  public void setEscape( boolean value )
-  {
-    _escape = value;
-  }
-
-  public boolean getEscape()
-  {
-    return _escape;
-  }
-
-  public int doStartTag()
-    throws JspException
-  {
-    return EVAL_BODY_BUFFERED;
-  }
-
-
-  public int doAfterBody()
-    throws JspException
-  {
-    try {
-
-      String body = getBodyContent().getString();
-      JspWriter out = getPreviousOut();
-
-      if ( getEscape() ) {
-        body = TagUtil.safeText( body );
-      }
-
-      List rules = getRules();
-      for ( Iterator i = rules.iterator(); i.hasNext(); ) {
-        NotesRule rule = (NotesRule) i.next();
-        body = rule.replaceAll( body );
-      }
-
-      out.println( body );
-
-      return SKIP_BODY;
-
-    } catch (IOException e) {
-      // @MORE@
-      e.printStackTrace();
-      throw new JspException( "Unexpected IO Exception." );
+    public NotesTag()
+    {
+        super();
+        initialise();
     }
-  }
 
-  public int doEndTag()
-    throws JspException
-  {
-    System.out.println( "end tag" );
-    return EVAL_PAGE;
-  }
+    private void initialise()
+    {
+        _escape = true;
+    }
 
+    public void release()
+    {
+        super.release();
+        initialise();
+    }
 
-  // -------------------- [[Test / Debug]] --------------------
+    public void setEscape(boolean value)
+    {
+        _escape = value;
+    }
+
+    public boolean getEscape()
+    {
+        return _escape;
+    }
+
+    public int doStartTag() throws JspException
+    {
+        return EVAL_BODY_BUFFERED;
+    }
+
+    public int doAfterBody() throws JspException
+    {
+        try {
+
+            String body = getBodyContent().getString();
+            JspWriter out = getPreviousOut();
+
+            if (getEscape()) {
+                body = TagUtil.safeText(body);
+            }
+
+            List<NotesRule> rules = getRules();
+            for (Iterator<NotesRule> i = rules.iterator(); i.hasNext();) {
+                NotesRule rule = (NotesRule) i.next();
+                body = rule.replaceAll(body);
+            }
+
+            out.println(body);
+
+            return SKIP_BODY;
+
+        } catch (IOException e) {
+            // @MORE@
+            e.printStackTrace();
+            throw new JspException("Unexpected IO Exception.");
+        }
+    }
+
+    public int doEndTag() throws JspException
+    {
+        System.out.println("end tag");
+        return EVAL_PAGE;
+    }
 
 }
-
-// ---------- End Of Class NotesTag ----------
 

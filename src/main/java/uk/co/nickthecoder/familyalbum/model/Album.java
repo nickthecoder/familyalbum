@@ -41,7 +41,7 @@ public class Album
 
     private String _notes;
 
-    private Set _photos = new HashSet();
+    private Set<Photo> _photos = new HashSet<Photo>();
 
     public Album()
     {
@@ -118,12 +118,12 @@ public class Album
         _notes = value;
     }
 
-    public Set getPhotos()
+    public Set<Photo> getPhotos()
     {
         return _photos;
     }
 
-    public void setPhotos(Set photos)
+    public void setPhotos(Set<Photo> photos)
     {
         _photos = photos;
     }
@@ -144,8 +144,8 @@ public class Album
     public void updateImages()
     {
         if (FamilyAlbum.instance().getBaseDirectory() != null) {
-            for (Iterator i = getPhotos().iterator(); i.hasNext();) {
-                Photo photo = (Photo) i.next();
+            for (Iterator<Photo> i = getPhotos().iterator(); i.hasNext();) {
+                Photo photo = i.next();
                 photo.updateImages();
             }
         }
@@ -153,8 +153,8 @@ public class Album
 
     public boolean containsPhoto(String photoName)
     {
-        for (Iterator i = getPhotos().iterator(); i.hasNext();) {
-            Photo photo = (Photo) i.next();
+        for (Iterator<Photo> i = getPhotos().iterator(); i.hasNext();) {
+            Photo photo = i.next();
 
             if (photo.getFilename().equals(photoName)) {
                 return true;
@@ -176,4 +176,3 @@ public class Album
     }
 
 }
-
